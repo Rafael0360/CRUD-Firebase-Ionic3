@@ -16,4 +16,14 @@
         <h3>{{person.job}}</h3>
 
     </ion-item>
+
+
+    <ion-fab left bottom>
+        <button ion-fab color="dark"><ion-icon name="arrow-dropup"></ion-icon></button>
+        <ion-fab-list side="top">
+            <button ion-fab (click)="add()"><ion-icon name="person-add"></ion-icon></button>
+            <button ion-fab><ion-icon name="trash"></ion-icon></button>
+            <button ion-fab (click)="refreshPage()"><ion-icon name="refresh"></ion-icon></button>
+        </ion-fab-list>
+    </ion-fab>
 </ion-content>
