@@ -1,26 +1,21 @@
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+![ionic3](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Ionic_Logo.svg/1200px-Ionic_Logo.svg.png)
+# CRUD  Firebase Ionic3 #
+### The simple exemple CRUD in Angularfire 2 ###
+#### How to use this exemple ####
 
-## How to use this template
+you need:
+*    nodeJS,
+*   Ionic@3 or superior,
+*  Angularfire 2 (npm install firebase angularfire2 --save)
 
-*This template does not work on its own*. The shared files for each starter are found in the [ionic2-app-base repo](https://github.com/ionic-team/ionic2-app-base).
+### How to run this exemple ###
 
-To use this template, either create a new ionic project using the ionic node.js utility, or copy the files from this repository into the [Starter App Base](https://github.com/ionic-team/ionic2-app-base).
+* ionic serve - run in browser,
+* ionic cordova run android - run in your android or emulate,
+* ionic cordova run ios - run in your ios or Xcode emulate.
 
-### With the Ionic CLI:
+### Author ###:
+_Rafael Oliveira da Silva_,
+_System Development_
 
-Take the name after `ionic2-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
-
-```bash
-$ sudo npm install -g ionic cordova
-$ ionic start mySideMenu sidemenu
-```
-
-Then, to run it, cd into `mySideMenu` and run:
-
-```bash
-$ ionic cordova platform add ios
-$ ionic cordova run ios
-```
-
-Substitute ios for android if not on a Mac.
 
