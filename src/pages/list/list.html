@@ -14,15 +14,18 @@
         </ion-avatar>
         <h2>{{person.name}}</h2>
         <h3>{{person.job}}</h3>
-
+        <button ion-button item-end color="danger" *ngIf="isRemove" (click)="remove(person)">
+            <ion-icon icon-right large style="font-size:30px;" name="ios-close-outline"></ion-icon>
+        </button>
     </ion-item>
+
 
 
     <ion-fab left bottom>
         <button ion-fab color="dark"><ion-icon name="arrow-dropup"></ion-icon></button>
         <ion-fab-list side="top">
             <button ion-fab (click)="add()"><ion-icon name="person-add"></ion-icon></button>
-            <button ion-fab><ion-icon name="trash"></ion-icon></button>
+            <button ion-fab (click)="setRemove()"><ion-icon name="trash"></ion-icon></button>
             <button ion-fab (click)="refreshPage()"><ion-icon name="refresh"></ion-icon></button>
         </ion-fab-list>
     </ion-fab>

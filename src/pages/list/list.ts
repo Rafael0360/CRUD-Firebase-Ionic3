@@ -11,10 +11,12 @@ import { AlertController } from 'ionic-angular';
 export class ListPage {
   //Variable created from all persons
   all : FirebaseListObservable<any[]>;
+  isRemove: boolean = false;
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public db: AngularFireDatabase, public alertCtrl: AlertController) {
     //root path
     this.all = db.list('/all');
+    console.log(this.all.lift );
   }
 
   refreshPage() {
@@ -23,8 +25,10 @@ export class ListPage {
 
   //function add in database
   add(){
+    //create a popup    
     let alert = this.alertCtrl.create({
-      title:"Cadastro",
+      title:"Register",
+      //inputs of popup
       inputs: [
         {
           name: 'Name',
@@ -36,7 +40,7 @@ export class ListPage {
         },
         {
           name: 'Icon',
-          placeholder: "icon"  
+          placeholder: "iconUrl"  
         }
       ],
       buttons: [
@@ -44,11 +48,11 @@ export class ListPage {
           text: "save",
           role: "save",
           handler: data=> {
-            //this function send the object for firebase
+            //this function send the object to firebase
             this.all.push({
                 'name':data.Name,
                 'job':data.Job,
-                'icon':data.Icon 
+                'iconUrl':data.Icon 
             })
           }
         }
@@ -56,6 +60,18 @@ export class ListPage {
 
     })
     alert.present();
+  }
+
+  setRemove(){
+    //show or not show the right icon
+    this.isRemove = !this.isRemove
+  }
+  //function of remove
+  //i get the object person
+  remove(person:any){
+    //remove the objetc person
+    this.all.remove(person);
+    this.setRemove();
   }
   
 
