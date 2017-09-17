@@ -16,7 +16,7 @@ export class ListPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public db: AngularFireDatabase, public alertCtrl: AlertController) {
     //root path
     this.all = db.list('/all');
-    console.log(this.all.lift );
+    //console.log(this.all.lift );
   }
 
   refreshPage() {
@@ -73,6 +73,5 @@ export class ListPage {
     this.all.remove(person);
     this.setRemove();
   }
-  
 
 }
