@@ -1,21 +1,25 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 //import angulafire
-import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
+import {AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 import { AlertController } from 'ionic-angular';
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'page-list',
   templateUrl: 'list.html'
 })
 export class ListPage {
-  //Variable created from all persons
-  all : FirebaseListObservable<any[]>;
+  //Variable created from all persons to display
+  all: Observable<any[]>;
+  // list to apply modifications to:
+  private allRef: AngularFireList<any>;
   isRemove: boolean = false;
-  
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public db: AngularFireDatabase, public alertCtrl: AlertController) {
     //root path
-    this.all = db.list('/all');
+    this.allRef = db.list('/all');
+    this.all = this.allRef.valueChanges();
     //console.log(this.all.lift );
   }
 
@@ -25,7 +29,7 @@ export class ListPage {
 
   //function add in database
   add(){
-    //create a popup    
+    //create a popup
     let alert = this.alertCtrl.create({
       title:"Register",
       //inputs of popup
@@ -34,13 +38,13 @@ export class ListPage {
           name: 'Name',
           placeholder: "name"
         },
-        { 
+        {
           name: 'Job',
           placeholder: "job"
         },
         {
           name: 'Icon',
-          placeholder: "iconUrl"  
+          placeholder: "iconUrl"
         }
       ],
       buttons: [
@@ -49,10 +53,10 @@ export class ListPage {
           role: "save",
           handler: data=> {
             //this function send the object to firebase
-            this.all.push({
+            this.allRef.push({
                 'name':data.Name,
                 'job':data.Job,
-                'iconUrl':data.Icon 
+                'iconUrl':data.Icon
             })
           }
         }
@@ -70,7 +74,7 @@ export class ListPage {
   //i get the object person
   remove(person:any){
     //remove the objetc person
-    this.all.remove(person);
+    this.allRef.remove(person);
     this.setRemove();
   }
 
